@@ -510,13 +510,13 @@
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify between 1 and HOTENDS values per array.
     // If fewer than EXTRUDER values are provided, the last element will be repeated.
-    #define DEFAULT_Kp_LIST {  20.48,  20.48 }
-    #define DEFAULT_Ki_LIST {   1.32,   1.32 }
-    #define DEFAULT_Kd_LIST {  79.23,  79.23 }
+    #define DEFAULT_Kp_LIST {  28.64,  28.64 }
+    #define DEFAULT_Ki_LIST {   2.22,   2.22 }
+    #define DEFAULT_Kd_LIST {  92.42,  92.42 }
   #else
-    #define DEFAULT_Kp 20.48
-    #define DEFAULT_Ki 1.32
-    #define DEFAULT_Kd 79.23
+    #define DEFAULT_Kp 28.64
+    #define DEFAULT_Ki 2.22
+    #define DEFAULT_Kd 92.42
 
   #endif
 #endif // PIDTEMP
@@ -1422,6 +1422,11 @@
  * NOTE: Requires a lot of PROGMEM!
  */
 //#define DEBUG_LEVELING_FEATURE
+
+#if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL, PROBE_MANUALLY)
+  // Set a height for the start of manual adjustment
+  #define MANUAL_PROBE_START_Z 0.2  // (mm) Comment out to use the last-measured height
+#endif
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
   // Gradually reduce leveling correction until a set height is reached,
